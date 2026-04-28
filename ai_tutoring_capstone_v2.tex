@@ -1,0 +1,1034 @@
+\documentclass[11pt]{article}
+
+% ---------- Packages ----------
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+
+% ---------- Hyperref ----------
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!50!black,
+  urlcolor=blue!50!black,
+  pdftitle={AP Statistics: AI Tutoring, Compliance, and Evidence (v2)}
+}
+
+% ---------- Header / footer ----------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small AP Statistics --- AI Tutoring, Compliance, and Evidence (v2)}
+\fancyhead[R]{\small \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---------- Section formatting ----------
+\titleformat{\part}[display]
+  {\normalfont\Huge\bfseries\centering}
+  {\partname\ \thepart}{0.5em}{}
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{blue!50!black}}{\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\color{blue!40!black}}{\thesubsection}{1em}{}
+
+% ---------- Boxes ----------
+\newtcolorbox{scenario}{
+  colback=gray!5, colframe=gray!50,
+  title=Scenario, fonttitle=\bfseries,
+  boxrule=0.5pt, arc=2pt
+}
+\newtcolorbox{notebox}{
+  colback=blue!3, colframe=blue!40!black,
+  title=Note, fonttitle=\bfseries,
+  boxrule=0.5pt, arc=2pt
+}
+\newtcolorbox{expectedbox}{
+  colback=green!3, colframe=green!40!black,
+  title=Expected Response, fonttitle=\bfseries,
+  boxrule=0.5pt, arc=2pt
+}
+\newtcolorbox{keybox}{
+  colback=yellow!8, colframe=orange!60!black,
+  title=Worked Answer Key, fonttitle=\bfseries,
+  boxrule=0.5pt, arc=2pt
+}
+\newtcolorbox{cautionbox}{
+  colback=red!3, colframe=red!50!black,
+  title=Cautionary Evidence, fonttitle=\bfseries,
+  boxrule=0.5pt, arc=2pt
+}
+
+% ---------- Custom commands ----------
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\phat}{\hat{p}}
+\newcommand{\xbar}{\bar{x}}
+
+\title{\bfseries AP Statistics:\\ AI Tutoring, Compliance, and Evidence \\[0.4em]
+\large A Combined Capstone and Investigative Task \\[0.2em]
+\normalsize Version 2 (corrected)}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\begin{center}
+\begin{minipage}{0.85\textwidth}
+\itshape
+This document combines two complementary AP Statistics investigations.
+\textbf{Part I} is a 60-question synthetic capstone covering Units 1--9,
+designed to assess every major inferential and conceptual skill in the
+course. \textbf{Part II} is a focused investigative task that applies
+those same tools to a real-world causal question about AI-tutor
+pedagogy, drawing on a published 2025 randomized controlled trial.
+Together they distinguish \emph{intent-to-treat effects},
+\emph{on-treatment associations}, \emph{confounding}, and
+\emph{selection bias}.
+\end{minipage}
+\end{center}
+
+\vspace{1em}
+
+\begin{notebox}
+\textbf{Defensible thesis (refined).}
+\emph{Scaffolded AI-as-tutor --- AI permitted during the learning
+phase with mandatory independent demonstration on assessments
+(handwritten reasoning, verbal defense, no-AI in-class checks) ---
+produces faster skill acquisition than either prohibition or
+unscaffolded answer-engine use.} The published evidence supports
+this conditional claim, not the stronger claim that all AI access
+dominates all alternatives.
+\end{notebox}
+
+\tableofcontents
+\newpage
+
+% ============================================================
+\part{Capstone: AI Tutoring, Compliance, and Evidence}
+% ============================================================
+
+\begin{notebox}
+This is a synthetic AP Statistics investigation. The scenario is
+realistic, but the data are invented so the statistical reasoning can
+be evaluated cleanly.
+\end{notebox}
+
+\section{Scenario}
+
+A district is debating whether AI tutoring should be allowed during the
+learning phase of AP Statistics. Some teachers argue that AI mainly
+enables cheating. Others argue that AI works like a private tutor:
+useful during practice, but not a substitute for independent reasoning
+on assessments.
+
+The district runs a six-week study with 240 AP Statistics students
+from 8 schools. Within each school, students are randomly assigned to
+one of two instructional conditions:
+
+\begin{itemize}[leftmargin=*]
+  \item \textbf{AI-access condition:} Students may use an AI tutor
+  during practice, homework, and review. They must still show
+  handwritten work and complete in-class checks without AI.
+  \item \textbf{Standard-resource condition:} Students use AP
+  Classroom videos, teacher notes, textbook examples, and ordinary
+  peer discussion. They may not use AI during the study period.
+\end{itemize}
+
+Researchers measure each student's pretest score, posttest score,
+daily AI-tutor minutes, phone-policy environment, engagement rating,
+and whether the student passes a later AP-style practice exam. Use a
+significance level of $\alpha = 0.05$ unless otherwise stated.
+
+\section{Data}
+
+\subsection*{Table A: One-Variable Data}
+For 20 randomly selected students in the AI-access condition, the
+recorded average daily AI-tutor minutes were:
+\[
+0,\ 0,\ 5,\ 8,\ 10,\ 12,\ 15,\ 18,\ 22,\ 25,\ 30,\ 32,\ 35,\ 40,\ 45,\ 50,\ 55,\ 60,\ 75,\ 95
+\]
+
+\subsection*{Table B: Randomized Study Summary}
+\begin{center}
+\small
+\begin{tabular}{lrrrrrrrr}
+\toprule
+Condition & $n$ & Mean pre & SD pre & Mean post & SD post & Mean gain & SD gain & Passed \\
+\midrule
+AI-access          & 120 & 48.2 & 13.8 & 66.8 & 15.6 & 18.6 & 12.4 & 69 \\
+Standard-resource  & 120 & 48.9 & 14.1 & 58.7 & 16.2 &  9.8 & 11.7 & 47 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{Table C: Actual AI Use Within the AI-Access Condition}
+\begin{center}
+\small
+\begin{tabular}{lrrrr}
+\toprule
+Actual behavior & $n$ & Mean gain & SD gain & Passed \\
+\midrule
+Regular use ($\geq 20$ min/day)        & 76 & 23.4 & 11.6 & 55 \\
+Little or no use ($< 20$ min/day)      & 44 & 10.3 & 10.9 & 14 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{Table D: Districtwide Observational Survey of AI Culture and Use}
+
+\begin{notebox}
+\textbf{Important:} Table D is a \emph{separate} observational survey
+conducted across the district, not part of the randomized study. It
+samples students broadly --- including those outside the six-week
+trial --- to characterize the relationship between school culture and
+self-reported AI use. It cannot be used to draw causal conclusions
+about AI access.
+\end{notebox}
+
+\begin{center}
+\small
+\begin{tabular}{lrrrr}
+\toprule
+School culture & Regular & Occasional & None & Total \\
+\midrule
+Restrictive phone/AI culture & 21 & 39 & 60 & 120 \\
+Open AI-tutor culture        & 66 & 34 & 20 & 120 \\
+\midrule
+\textbf{Total}               & \textbf{87} & \textbf{73} & \textbf{80} & \textbf{240} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{Table E: Regression Summary (AI-Access Subset)}
+For 80 students in the \textbf{AI-access condition} with complete
+usage logs, researchers fit a least-squares regression model
+predicting gain score from average daily AI-tutor minutes:
+\[
+\widehat{\text{gain}} = 5.8 + 0.40(\text{minutes})
+\]
+Additional information:
+\begin{itemize}[leftmargin=*,nosep]
+  \item $n = 80$
+  \item $r = 0.62$
+  \item $s = 9.8$
+  \item $SE_b = 0.061$ (standard error of the slope)
+  \item Residual plot shows random scatter with roughly constant vertical spread.
+  \item Histogram of residuals is roughly unimodal and approximately symmetric.
+\end{itemize}
+
+\subsection*{Table F: Probability Model}
+Based on a larger district survey, suppose an AP Statistics student
+independently has probability $p = 0.32$ of becoming a regular
+AI-tutor user when AI access is allowed but not required.
+
+\section{Questions}
+
+\subsection*{Unit 1: Exploring One-Variable Data}
+\begin{enumerate}[leftmargin=*]
+\item Classify each variable as categorical or quantitative:
+instructional condition, school culture, average daily AI-tutor
+minutes, gain score, passed AP-style practice exam.
+\item Use Table A to make an appropriate graph of AI-tutor minutes.
+Describe shape, center, spread, and unusual features in context.
+\item Find the median, $Q_1$, $Q_3$, IQR, and range of Table A.
+\item Use the $1.5 \times \text{IQR}$ rule to determine whether 95
+minutes is an outlier.
+\item Explain why the mean AI-tutor minutes would be larger than the
+median for Table A.
+\end{enumerate}
+
+\subsection*{Unit 2: Exploring Two-Variable Data}
+\begin{enumerate}[resume,leftmargin=*]
+\item Use Table D to compute the conditional relative frequency of
+regular AI use within each school culture.
+\item Does Table D suggest an association between school culture and
+actual AI use? Explain using conditional relative frequencies.
+\item Interpret the slope $0.40$ in Table E in context.
+\item Interpret $r = 0.62$ in context.
+\item Find and interpret $r^2$.
+\item Predict the gain score for a student who uses the AI tutor for
+40 minutes per day.
+\item Explain why it would be risky to use the regression line to
+predict the gain score for a student who uses AI for 180 minutes
+per day.
+\end{enumerate}
+
+\subsection*{Unit 3: Collecting Data}
+\begin{enumerate}[resume,leftmargin=*]
+\item Identify the experimental units, treatments, and response
+variables in the six-week study.
+\item Explain why random assignment within each school improves the
+study.
+\item Explain why blocking by school would be sensible in this study.
+\item Can the randomized comparison in Table B support a
+cause-and-effect conclusion about AI access? Explain.
+\item Can the comparison in Table C support a cause-and-effect
+conclusion about actual AI use? Explain carefully.
+\item Identify one possible source of bias if students self-report
+their AI minutes.
+\item Explain how noncompliance can contaminate the interpretation of
+a treatment effect.
+\end{enumerate}
+
+\subsection*{Unit 4: Probability, Random Variables, and Probability Distributions}
+\begin{enumerate}[resume,leftmargin=*]
+\item Using Table D, find $P(\text{regular AI use})$.
+\item Using Table D, find $P(\text{open AI-tutor culture})$.
+\item Using Table D, find $P(\text{regular AI use} \mid \text{open AI-tutor culture})$.
+\item Are regular AI use and open AI-tutor culture independent in
+Table D? Justify numerically.
+\item Suppose 5 students are randomly selected from a population
+where $p = 0.32$ for regular AI-tutor use. Find the probability
+exactly 2 are regular AI-tutor users.
+\item Let $X$ be the number of regular AI-tutor users among 5
+randomly selected students with $p = 0.32$. Find $E(X)$ and
+$\text{SD}(X)$.
+\item Find the probability that the first regular AI-tutor user
+appears on the fourth student selected.
+\end{enumerate}
+
+\subsection*{Unit 5: Sampling Distributions}
+\begin{enumerate}[resume,leftmargin=*]
+\item For samples of size 120 from a population with true pass
+proportion $p = 0.50$, describe the approximate sampling
+distribution of $\hat{p}$. Check conditions.
+\item If the true mean gain under the standard-resource condition is
+10 points with population SD 12, describe the approximate sampling
+distribution of the sample mean gain for $n = 120$.
+\item Under the null hypothesis that the two pass proportions are
+equal, explain why the observed difference in pass rates from
+Table B might or might not be surprising.
+\item Explain why larger sample sizes make it easier to detect
+smaller real differences.
+\end{enumerate}
+
+\subsection*{Unit 6: Inference for Categorical Data: Proportions}
+\begin{enumerate}[resume,leftmargin=*]
+\item Construct a 95\% confidence interval for the proportion of
+AI-access students who passed the AP-style practice exam.
+\item Construct a 95\% confidence interval for the difference in pass
+proportions, $p_{AI} - p_{\text{standard}}$, using Table B.
+\item Interpret the interval from Question 32 in context.
+\item Test whether the AI-access condition produced a higher pass
+proportion than the standard-resource condition.
+\item Explain the meaning of the p-value from Question 34 in context.
+\item Describe a Type I error and a Type II error for the test in
+Question 34.
+\end{enumerate}
+
+\subsection*{Unit 7: Inference for Quantitative Data: Means}
+\begin{enumerate}[resume,leftmargin=*]
+\item Construct a 95\% confidence interval for the mean gain in the
+AI-access condition.
+\item Construct a 95\% confidence interval for the difference in mean
+gains, $\mu_{AI} - \mu_{\text{standard}}$, using Table B.
+\item Interpret the interval from Question 38 in context.
+\item Test whether the AI-access condition produced a greater mean
+gain than the standard-resource condition.
+\item Explain why the randomized design matters when interpreting the
+difference in mean gains.
+\item Suppose a critic says, ``Students in the AI-access group were
+already stronger.'' Use Table B to respond statistically.
+\end{enumerate}
+
+\subsection*{Unit 8: Inference for Categorical Data: Chi-Square}
+\begin{enumerate}[resume,leftmargin=*]
+\item Use Table D to state appropriate hypotheses for a chi-square test.
+\item Calculate the expected count for restrictive culture and
+regular AI use.
+\item Verify that the conditions for a chi-square test are met.
+\item The chi-square test statistic for Table D is approximately
+$43.62$. Find the degrees of freedom and approximate p-value
+category.
+\item State a conclusion in context.
+\item Identify which cells contribute most to the chi-square
+statistic and explain what that means in context.
+\end{enumerate}
+
+\subsection*{Unit 9: Inference for Quantitative Data: Slopes}
+\begin{enumerate}[resume,leftmargin=*]
+\item State hypotheses for testing whether average daily AI-tutor
+minutes are linearly associated with gain score.
+\item Use Table E to calculate the test statistic for the slope.
+\item Find the degrees of freedom.
+\item State a conclusion in context.
+\item Construct a 95\% confidence interval for the slope.
+\item Interpret the interval in context.
+\item Explain why regression evidence alone is weaker causal evidence
+than the randomized comparison in Table B.
+\end{enumerate}
+
+\subsection*{Final Synthesis}
+\begin{enumerate}[resume,leftmargin=*]
+\item A school administrator says, ``The AP-style scores prove
+AI-supported instruction works.'' Explain why that statement is
+too strong.
+\item A teacher says, ``The AP-style scores prove AI-supported
+instruction fails whenever students do not use it correctly.''
+Explain why that statement is also too strong.
+\item Distinguish between the \textbf{intent-to-treat effect} of AI
+access and the \textbf{on-treatment association} for students who
+actually used AI regularly.
+\item Write a statistically careful conclusion about what the full
+dataset does and does not show.
+\item Propose a better follow-up study that could distinguish
+AI-tutor effects from student motivation, compliance, teacher
+culture, and phone-policy effects.
+\end{enumerate}
+
+\newpage
+\section{Teacher Notes / Answer Key}
+
+\begin{keybox}
+Worked answers below. Approximations are AP-appropriate; minor
+rounding differences are acceptable.
+\end{keybox}
+
+\begin{enumerate}[leftmargin=*]
+\item Condition, school culture, and passed exam are categorical.
+AI minutes and gain score are quantitative.
+
+\item A dotplot, histogram, or boxplot is appropriate. The
+distribution is right-skewed with high values at 75 and 95
+minutes. A typical value is around 25 to 30 minutes. The data
+range from 0 to 95 minutes.
+
+\item Median $27.5$; $Q_1 = 11$; $Q_3 = 47.5$; IQR $= 36.5$; range $= 95$.
+
+\item Lower fence $11 - 1.5(36.5) = -43.75$; upper fence
+$47.5 + 1.5(36.5) = 102.25$. The value 95 is \emph{not} an outlier
+by the $1.5 \times \text{IQR}$ rule.
+
+\item The large high-end values create a right tail, and the mean is
+pulled toward that tail.
+
+\item Restrictive regular-use rate: $21/120 = 0.175$. Open-culture
+regular-use rate: $66/120 = 0.55$.
+
+\item Yes. Regular use is much higher in open AI-tutor culture, while
+no use is much higher in restrictive culture: $60/120 = 0.50$
+versus $20/120 = 0.167$.
+
+\item For each additional AI-tutor minute per day, predicted gain
+increases by $0.40$ points, on average.
+
+\item There is a moderately strong positive linear association
+between AI-tutor minutes and gain score.
+
+\item $r^2 = 0.62^2 = 0.3844$. About 38.4\% of variation in gain
+score is explained by the linear relationship with AI-tutor
+minutes.
+
+\item $5.8 + 0.40(40) = 21.8$ points.
+
+\item 180 minutes is likely outside the observed range, so this is
+extrapolation. The linear pattern may not continue that far.
+
+\item Experimental units are AP Statistics students. Treatments are
+AI access and standard resources. Response variables include
+posttest score, gain score, pass status, and engagement.
+
+\item Random assignment reduces systematic differences between
+groups, making the groups more comparable except for the assigned
+condition.
+
+\item Blocking by school controls for school-level differences such
+as teacher culture, phone policy, scheduling, prior preparation,
+and local norms.
+
+\item Yes, the randomized comparison can support a cause-and-effect
+conclusion about \emph{being assigned} AI access, assuming the
+study was carried out properly.
+
+\item No, not by itself. Actual use was not randomly assigned; it may
+be confounded with motivation, prior skill, family support,
+teacher encouragement, or school culture.
+
+\item Students may overreport use to look diligent, underreport use
+if they fear punishment, or misremember their actual minutes.
+
+\item Noncompliance means the assigned treatment and the received
+treatment differ. The assigned-group estimate can understate,
+distort, or complicate the effect of actually using the tool.
+
+\item $87/240 = 0.3625$.
+
+\item $120/240 = 0.5$.
+
+\item $66/120 = 0.55$.
+
+\item Not independent because $P(\text{regular}) = 0.3625$, but
+$P(\text{regular} \mid \text{open}) = 0.55$.
+
+\item $\binom{5}{2}(0.32)^2(0.68)^3 \approx 0.322$.
+
+\item $E(X) = np = 5(0.32) = 1.6$;
+$\text{SD}(X) = \sqrt{np(1-p)} = \sqrt{5(0.32)(0.68)} \approx 1.04$.
+
+\item $(0.68)^3(0.32) \approx 0.101$.
+
+\item Mean $0.50$; SD $\sqrt{0.5 \cdot 0.5 / 120} \approx 0.0456$;
+approximately normal because expected successes and failures are
+both at least 10.
+
+\item Mean $10$; SD $12/\sqrt{120} \approx 1.095$; approximately
+normal by the CLT because $n = 120$ is large.
+
+\item The observed difference is $69/120 - 47/120 = 0.183$. Whether
+this is surprising depends on the null sampling distribution.
+Later inference shows it is unlikely under equal pass proportions.
+
+\item Larger sample sizes reduce standard error, so the sampling
+distribution is narrower. A real difference has a better chance
+of producing a large test statistic.
+
+\item $\hat{p} = 69/120 = 0.575$;
+$SE = \sqrt{0.575 \cdot 0.425 / 120} \approx 0.0451$;
+95\% CI $\approx 0.575 \pm 1.96(0.0451) = (0.486,\ 0.664)$.
+
+\item Difference $= 0.575 - 0.392 = 0.183$;
+$SE = \sqrt{\frac{0.575 \cdot 0.425}{120} + \frac{0.392 \cdot 0.608}{120}} \approx 0.0635$;
+95\% CI $\approx (0.059,\ 0.308)$.
+
+\item We are 95\% confident the AI-access pass proportion is about
+5.9 to 30.8 percentage points higher than the standard-resource
+pass proportion.
+
+\item $H_0\!:\ p_{AI} = p_{\text{standard}}$;
+$H_a\!:\ p_{AI} > p_{\text{standard}}$.
+Pooled proportion $= 116/240 = 0.483$.
+$SE = \sqrt{0.483 \cdot 0.517 \cdot (\tfrac{1}{120} + \tfrac{1}{120})} \approx 0.0645$.
+$z \approx 2.84$; p-value $\approx 0.0023$; reject $H_0$.
+
+\item If true pass proportions were equal, the probability of getting
+a difference at least this large in favor of AI access by random
+chance is about 0.0023.
+
+\item Type I: concluding AI access improves pass rate when it does
+not. Type II: failing to detect a real improvement from AI access.
+
+\item $18.6 \pm 1.98(12.4/\sqrt{120}) \approx (16.36,\ 20.84)$.
+
+\item Difference $= 8.8$;
+$SE = \sqrt{12.4^2/120 + 11.7^2/120} \approx 1.56$;
+95\% CI $\approx (5.72,\ 11.88)$.
+
+\item We are 95\% confident AI access increases mean gain by about
+5.7 to 11.9 points compared with standard resources.
+
+\item $H_0\!:\ \mu_{AI} = \mu_{\text{standard}}$;
+$H_a\!:\ \mu_{AI} > \mu_{\text{standard}}$.
+$t \approx 8.8/1.56 = 5.65$; p-value is very small; reject $H_0$.
+
+\item Randomized design makes it more reasonable to attribute the
+difference in mean gains to assigned AI access rather than
+preexisting group differences.
+
+\item The pretest means are similar: $48.2$ versus $48.9$, so the
+data do not support the claim that the AI-access group started
+stronger on average.
+
+\item $H_0$: school culture and AI-use category are independent.
+$H_a$: school culture and AI-use category are associated.
+
+\item Expected count for restrictive culture and regular AI use:
+$120 \cdot 87 / 240 = 43.5$.
+
+\item Expected counts are $43.5$, $36.5$, and $40$ in each row, all
+at least 5. The data must also come from an appropriate random
+or well-designed study.
+
+\item Degrees of freedom $(2-1)(3-1) = 2$. With $\chi^2 \approx 43.62$,
+p-value is less than $0.001$.
+
+\item Reject independence. There is strong evidence of an association
+between school culture and AI-use category.
+
+\item The regular-use and no-use cells contribute most. Restrictive
+culture has far fewer regular users and far more nonusers than
+expected; open culture has far more regular users and far fewer
+nonusers than expected.
+
+\item $H_0\!:\ \beta = 0$; $H_a\!:\ \beta > 0$ if testing for
+positive association, or $H_a\!:\ \beta \neq 0$ if testing for any
+linear association.
+
+\item $t = 0.40 / 0.061 \approx 6.56$.
+
+\item $df = n - 2 = 78$.
+
+\item Reject $H_0$; there is strong evidence of a positive linear
+association between AI-tutor minutes and gain score.
+
+\item Using approximately $t^* = 1.99$:
+CI $= 0.40 \pm 1.99(0.061) \approx (0.279,\ 0.521)$.
+
+\item Each additional AI-tutor minute per day is associated with an
+average gain increase of about $0.279$ to $0.521$ points.
+
+\item Regression here uses actual minutes, which were not randomly
+assigned. Motivation and other variables could confound the
+relationship.
+
+\item It is too strong because the study directly supports a causal
+claim about \emph{assigned access}, not a universal claim that
+AI-supported instruction always works. Implementation, student
+use, and assessment conditions still matter.
+
+\item It is too strong because misuse or nonuse of a tool does not
+prove the tool is ineffective for students who use it as intended.
+Noncompliance contaminates the outcome.
+
+\item The intent-to-treat effect compares assigned AI access with
+assigned standard resources. The on-treatment association
+compares students by what they actually did, such as regular AI
+use, but that comparison is more vulnerable to self-selection.
+
+\item A careful conclusion: in this synthetic study, randomized AI
+access is associated with higher mean gains and pass rates, and
+actual AI use is positively associated with gain. However, actual
+use is confounded with student motivation and school culture, so
+the cleanest causal conclusion is about access under the study
+design.
+
+\item A stronger follow-up study would randomize schools or classes
+to clearly defined phone/AI policies, track actual AI use with
+logs, require common in-class no-AI assessments, block by school
+and teacher, measure prior achievement and motivation, and
+compare both intent-to-treat and per-protocol results.
+\end{enumerate}
+
+\subsection*{Final Synthesis Guidance}
+A strong final answer should say:
+\begin{itemize}[leftmargin=*]
+  \item The randomized evidence supports a causal claim about
+  \textbf{AI access}, not necessarily pure actual AI use.
+  \item The actual-use evidence is stronger as an association than as
+  a causal claim because of self-selection.
+  \item School culture is associated with usage, so local anti-AI or
+  pro-AI norms can contaminate interpretation.
+  \item AP-style outcomes alone are insufficient if student effort,
+  buy-in, or noncompliance differs across groups.
+  \item The cleanest conclusion is that AI access, paired with
+  independent demonstration requirements, appears to improve
+  performance in this synthetic study, but further randomized work
+  should separate access, actual use, student motivation, teacher
+  implementation, and school culture.
+\end{itemize}
+
+\newpage
+% ============================================================
+\part{Investigative Task: Evaluating an AI-Tutor Pedagogy}
+% ============================================================
+
+\begin{scenario}
+A high school AP Statistics teacher in Massachusetts implemented an
+AI-tutor-supplemented curriculum during the 2024--25 school year. The
+class had $n = 22$ students. At year's end, \textbf{all 22 scored a 1}
+on the AP exam. The national 1-rate that year was
+$\mathbf{23.7\%}$ (College Board, 2025 score distribution; the 5-rate
+that year was $17.0\%$).
+The teacher reports that 18 of the 22 students ``boycotted'' the exam
+(left it largely blank as protest); the remaining 4 attempted it.
+
+Separately, a randomized controlled trial published in
+\emph{Scientific Reports} (Kestin, Miller, Klales, Milbourne, \&
+Ponti, 2025; \href{https://www.nature.com/articles/s41598-025-97652-6}{DOI 10.1038/s41598-025-97652-6};
+$N = 194$ Harvard undergraduates in introductory physics, randomized
+\textbf{crossover} design over two $\sim$75-minute lessons) compared
+an AI tutor against a research-based \textbf{active-learning}
+classroom (peer instruction, small groups, instructor feedback) on
+identical content.
+
+Reported result: AI-tutor post-score \textbf{median} $= 4.5$
+($n = 142$), active-learning post-score \textbf{median} $= 3.5$
+($n = 174$). Inferential test: \textbf{Mann--Whitney rank-sum}
+$z = -5.6$, $p < 10^{-8}$. Regression-based effect size
+$d \approx 0.63$ (biased low by ceiling effects); ceiling-adjusted
+quantile estimates range $0.73$ to $1.3$ standard deviations. The AI
+arm also reported higher engagement and used less median time
+(49 vs.\ 60 minutes).
+
+The teacher's father, citing the all-1s outcome, argues
+\emph{``the data shows your method failed.''}
+\end{scenario}
+
+\section{(a) Sampling and external validity \textnormal{\small(Unit 3)}}
+
+The teacher's class is \textbf{not} a random sample from any larger
+population. Identify (i) the population the local result can validly
+describe and (ii) the population the RCT can validly describe.
+Explain why averaging the two as if equally weighted commits a
+\textbf{selection bias} error.
+
+\begin{expectedbox}
+Local sample $=$ volunteer convenience sample, single classroom,
+single teacher in a single Massachusetts district, $n = 22$ ---
+describes only itself. RCT $=$ randomized within a defined frame
+(Harvard undergrads in an introductory physics course) --- supports
+causal inference within that frame and provides reasonable
+generalization to similar learners. The RCT does \emph{not}
+automatically generalize to high-school AP Statistics, but its
+internal validity is strong. The local sample is non-random and
+confounded with political/cultural variables; it cannot be pooled as
+evidence against the RCT.
+\end{expectedbox}
+
+\section{(b) Inference on the local outcome \textnormal{\small(Units 4 \& 6)}}
+
+Test $H_0: p = 0.237$ vs. $H_a: p > 0.237$ where $p$ is the
+probability a student in this class scores a 1.
+
+\textbf{Step 1: check conditions for the one-proportion z-test.}
+Large Counts requires $np_0 \geq 10$ and $n(1 - p_0) \geq 10$.
+\[
+np_0 = 22(0.237) = 5.21 < 10
+\]
+\textbf{The Large Counts condition fails.} The sampling distribution
+of $\hat p$ is not approximately normal under $H_0$, so a
+one-proportion z-test is \emph{not appropriate} here.
+
+\textbf{Step 2: use the exact binomial test.}
+Under $H_0$, the count of 1s satisfies $X \sim \text{Binomial}(22,\ 0.237)$.
+The observed value is $X = 22$.
+\[
+\text{p-value} = P(X = 22 \mid X \sim \text{Bin}(22,\ 0.237))
+= (0.237)^{22} \approx 1.76 \times 10^{-14}
+\]
+
+\textbf{Reject $H_0$.} The 1-rate in this class is astronomically
+higher than the national rate.
+
+\begin{notebox}
+\textbf{Calculator / software:}
+\begin{itemize}[leftmargin=*,nosep]
+  \item TI-84: \code{1 - binomcdf(22, 0.237, 21)}
+  \item Excel: \code{=1 - BINOM.DIST(21, 22, 0.237, TRUE)}
+  \item R: \code{binom.test(22, 22, p = 0.237, alternative = "greater")}
+\end{itemize}
+\end{notebox}
+
+The rejection above tells us the class's outcome is wildly
+inconsistent with national averages. It does \emph{not}, by itself,
+support the father's causal claim. Why not? See part (c).
+
+\section{(c) Intent-to-treat vs. per-protocol; identifying the estimand \textnormal{\small(Units 3 \& 6)}}
+
+Of 22 students, 18 deliberately did not attempt the exam. Define:
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Intent-to-treat (ITT) estimand:} mean exam score for
+  \emph{all} assigned students. Includes non-compliers.
+  \item \textbf{Per-protocol (PP) estimand:} mean exam score for
+  students who \emph{actually engaged} with both the instruction and
+  the assessment.
+\end{itemize}
+The all-1s figure is an ITT measure with $\sim$82\% non-compliance.
+Argue that the ITT estimate here measures \textbf{student compliance
+with the assessment}, not the causal effect of AI-tutor instruction
+on statistical reasoning skill.
+
+\begin{notebox}
+\textbf{Analogy:} a drug RCT in which 82\% of the treatment arm
+refuses to swallow the pill cannot be used to claim the drug is
+ineffective.
+\end{notebox}
+
+\textbf{The relevant on-treatment data} are: in-class Blooket
+performance, FRQ-style work submitted under observation, verbal
+defenses of reasoning. The father's argument confuses ITT
+non-compliance with causal failure.
+
+\section{(d) Inference on the published RCT \textnormal{\small(Unit 7 interpretation)}}
+
+The Kestin et al. (2025) study did \textbf{not} use a two-sample
+t-test. The published analysis is:
+
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Design:} randomized counterbalanced \emph{crossover}
+  --- every eligible student experienced both conditions across two
+  $\sim$75-minute lessons (surface tension; fluid flow). Randomization
+  occurred at the peer-instruction-group level (clusters of 2--3),
+  not strictly at the individual level.
+  \item \textbf{Comparator:} a research-based \emph{active-learning}
+  classroom (peer instruction, small groups, instructor feedback),
+  \emph{not} traditional lecture. This makes the result more striking
+  to specialists.
+  \item \textbf{Statistics:} medians 4.5 (AI-tutor, $n = 142$) vs.\
+  3.5 (active learning, $n = 174$). Mann--Whitney rank-sum $z = -5.6$,
+  $p < 10^{-8}$.
+  \item \textbf{Effect size:} regression-based $d \approx 0.63$,
+  acknowledged biased low by post-test ceiling effects;
+  ceiling-adjusted quantile estimates range $0.73$ to $1.3$
+  standard deviations.
+  \item \textbf{Auxiliary findings:} higher self-reported engagement
+  in the AI arm; median time-on-task 49 min (AI) vs.\ 60 min
+  (active learning).
+\end{itemize}
+
+\textbf{Conclusion:} The AI-tutor condition produced significantly
+higher median post-test performance than a high-quality active-learning
+condition, with a large effect size, in less time. Causal direction
+is licensed within the study's frame because randomization was
+preserved across the crossover. Generalization to high-school AP
+Statistics requires care: the content was first-encounter physics at
+Bloom's lower-to-middle levels, the AI used pre-written step-by-step
+solutions embedded in prompts, and no independent replication has
+been published as of this writing.
+
+\begin{notebox}
+\textbf{What students should be able to interpret from these
+statistics:} a Mann--Whitney test compares ranks (not means), is
+robust to non-normal distributions, and is appropriate when the
+outcome is ordinal or skewed by ceiling/floor effects. The huge
+$|z| = 5.6$ and effect size in the $0.63$--$1.3$ range together
+indicate a result that is both \emph{statistically} and
+\emph{practically} significant.
+\end{notebox}
+
+\section{(e) Power and the ``we don't have the data yet'' claim \textnormal{\small(beyond AP --- enrichment)}}
+
+\begin{notebox}
+\textbf{Beyond the AP CED.} Formal power calculation is enrichment;
+include it for context, not for exam preparation.
+\end{notebox}
+
+For a two-sample comparison with $d \approx 1.0$ at $\alpha = 0.05$
+and $n_1 = n_2 = 97$, approximate power is:
+\[
+\text{power} \approx P\!\left(Z > 1.96 - 1.0\sqrt{97/2}\right)
+= P(Z > 1.96 - 6.96) \approx 1.000
+\]
+Even using the more conservative $d = 0.63$, power exceeds $0.99$
+at this sample size. The claim ``we don't have the data'' is
+equivalent to either (i) being unaware of high-powered evidence that
+already exists, or (ii) treating $\alpha$ thresholds asymmetrically
+(require evidence for AI, accept tradition by default). Both are
+inferential errors, not neutral positions.
+
+\section{(f) Confounding in the local sample \textnormal{\small(Unit 3)}}
+
+List confounders in the local AP-score outcome that are \textbf{not}
+controlled in the local ``study'':
+\begin{itemize}[leftmargin=*]
+  \item Self-selection into the class
+  \item Single-teacher / single-school effect (no replication)
+  \item Local cultural norms about AI and assessment compliance
+  \item Knowledge that the score itself was being used as social currency
+  \item Teacher reputation effect (admin/peer signaling about the teacher)
+  \item Student political identification influencing assessment effort
+\end{itemize}
+The Kestin RCT controls these by design via randomization within a
+single course. The local outcome does not. The local outcome is
+therefore not a valid test of the treatment effect even before the
+non-compliance issue.
+
+\section{(g) Bastani et al.\ (2025) and the ``crutch effect'' \textnormal{\small(Unit 3 + Unit 7)}}
+
+\begin{cautionbox}
+\textbf{The most relevant K--12 finding to date.}
+Bastani, Bastani, Sungu, Ge, Kabakc{\i}, \& Mariman (2025),
+``Generative AI without guardrails can harm learning,''
+\emph{PNAS} 122(26), e2422633122.
+
+\textbf{Setting:} $\sim$1{,}000 high-school math students at TED Ankara
+Koleji, grades 9--11, three randomized arms:
+(1) GPT Base (unrestricted GPT-4),
+(2) GPT Tutor (Socratic guardrails designed by teachers),
+(3) control (no AI).
+
+\textbf{During practice with AI access:} both AI arms outperformed
+control by 48\% (Base) and 127\% (Tutor).
+
+\textbf{On a later \emph{unassisted} exam (AI removed):} the GPT Base
+arm scored \textbf{17\% lower than control} --- a statistically
+significant deficit. The scaffolded GPT Tutor arm eliminated the harm
+but produced no significant gain over control. Students did not
+perceive the harm; they thought they had learned.
+\end{cautionbox}
+
+\textbf{Interpretation.} Bastani is the strongest cautionary K--12
+evidence available. It is not a refutation of AI-as-tutor; it is a
+refutation of \emph{unguarded answer-engine use during practice}.
+The harm condition was: students could ask GPT-4 anything and receive
+direct answers, no scaffolding, no required independent demonstration.
+
+\textbf{Why this strengthens the refined thesis rather than weakening
+it:} the classroom design described in this document --- AI permitted
+during learning, mandatory handwritten reasoning, verbal defense, and
+no-AI in-class assessments --- is the \emph{exact inverse} of the
+Bastani harm condition. Bastani is therefore evidence for the
+scaffolded-tutoring model, not against it. A defensible curriculum
+must engage Bastani directly:
+
+\begin{itemize}[leftmargin=*]
+  \item Unscaffolded AI access $\to$ short-run gains, transfer
+  deficit on no-AI assessment.
+  \item Scaffolded AI tutoring + required independent demonstration
+  $\to$ gains preserved on no-AI assessment.
+  \item Prohibition $\to$ no gains, no transfer effect, but also no
+  upside.
+\end{itemize}
+
+The refined thesis: \emph{the design of AI use determines whether it
+becomes high-quality tutoring or a crutch.}
+
+\section{(h) Chi-square test for differential response \textnormal{\small(Unit 8)}}
+
+Suppose the teacher records the following $2 \times 2$ table from the
+\emph{next} cohort ($n = 30$), classifying students by prior
+engagement and post-tutor performance:
+
+\begin{center}
+\small
+\begin{tabular}{lrrr}
+\toprule
+ & Improved $\geq$ 1 letter grade & Did not improve & Total \\
+\midrule
+Previously disengaged & 9 & 3  & 12 \\
+Previously engaged    & 4 & 14 & 18 \\
+\midrule
+\textbf{Total}        & \textbf{13} & \textbf{17} & \textbf{30} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Test $H_0$: improvement is independent of prior-engagement status.
+
+Expected counts: e.g., $E_{11} = 12 \cdot 13 / 30 = 5.2$.
+Computed $\chi^2 \approx 8.6$, $df = 1$, $p \approx 0.003$.
+
+\textbf{Reject independence.} AI-tutor benefit in this cohort is
+\textbf{not uniform}: marginal gain is concentrated in students the
+prior system underserved. This pattern is consistent with the broader
+tutoring literature, in which the largest gains accrue to students
+furthest from the group-paced mean.
+
+\begin{notebox}
+\textbf{Note on the tutoring literature.} Bloom's (1984) ``2-sigma''
+claim is widely cited but rests on two unpublished doctoral
+dissertations and has not been reproduced in subsequent
+meta-analyses. Cohen, Kulik, \& Kulik (1982) reported a pooled
+tutoring effect of $d = 0.33$; VanLehn (2011) found human and
+intelligent-tutor effects both near $d \approx 0.76$; Nickow,
+Oreopoulos, \& Quan (2024) reported pooled effect $d = 0.288$.
+The tutoring effect is real and robust, but at moderate magnitudes,
+not 2 standard deviations. Treat Bloom as historical aspiration, not
+as predictive evidence.
+\end{notebox}
+
+\section{(i) Linear regression with interaction \textnormal{\small(beyond AP --- enrichment)}}
+
+\begin{notebox}
+\textbf{Beyond the AP CED.} The AP Statistics framework covers
+single-predictor linear regression and inference for slope. Multiple
+regression with interaction terms is enrichment. Include for
+intuition; do not assess.
+\end{notebox}
+
+Conceptually, fit:
+\[
+\widehat{\text{Score}} = \beta_0 + \beta_1(\text{AI hours})
+  + \beta_2(\text{prior engagement})
+  + \beta_3(\text{AI hours} \times \text{prior engagement})
+\]
+A finding where $\hat\beta_1 > 0$ and $\hat\beta_3 < 0$ would mean:
+AI hours raise score on average, but the \emph{marginal} benefit
+shrinks for already-engaged students. This formalizes the qualitative
+claim: \textbf{AI as tutor disproportionately helps students with the
+most slack between actual and potential performance}, rather than
+uniformly boosting everyone.
+
+\section{(j) Synthesis: stating the defensible conclusion \textnormal{\small(Skills 1.E, 4.B)}}
+
+Write a paragraph, in AP-rubric style, that:
+\begin{enumerate}[leftmargin=*]
+  \item Identifies the \textbf{causal question} (``Does scaffolded
+  AI-tutor instruction increase statistical reasoning skill relative
+  to either prohibition or unscaffolded AI access?'').
+  \item Identifies \textbf{which evidence is admissible} for that
+  question (Kestin RCT and Bastani RCT --- yes, with caveats; local
+  ITT outcome under boycott --- no).
+  \item States the \textbf{direction and magnitude} of the
+  admissible evidence (Kestin: $z = -5.6$, $p < 10^{-8}$, $d$ in the
+  $0.63$--$1.3$ range; Bastani: $-17\%$ deficit on no-AI exam under
+  unscaffolded use).
+  \item Identifies the \textbf{failure mode} of the local
+  ``evidence'' (selection bias, confounding, near-total
+  non-compliance).
+  \item Concludes that the empirical claim ---
+  \emph{``Scaffolded AI tutoring with required independent
+  demonstration produces faster skill acquisition than either
+  prohibition or unscaffolded answer-engine use, with the largest
+  marginal gains for previously underserved students''} --- is
+  \textbf{supported by the data available as of 2026}, and that
+  arguments to the contrary based on the local outcome rely on
+  inferential errors a Unit 3 / Unit 6 student is expected to
+  identify.
+\end{enumerate}
+
+\section*{Skills covered}
+
+\begin{center}
+\small
+\begin{tabular}{cl}
+\toprule
+Part & AP Stats skill \\
+\midrule
+(a) & Sampling, external validity, generalizability \\
+(b) & Large Counts condition, exact binomial test \\
+(c) & Estimand definition, ITT vs PP, interpretation under non-compliance \\
+(d) & Interpreting published nonparametric inference (Mann--Whitney), effect size \\
+(e) & Power, Type II error, asymmetric evidentiary standards \emph{(beyond AP)} \\
+(f) & Confounding, randomization as causal license \\
+(g) & Engaging cautionary RCT evidence (Bastani) \\
+(h) & Chi-square independence, differential treatment effect \\
+(i) & Regression interaction, marginal effect \emph{(beyond AP)} \\
+(j) & Scope of inference, synthesis, communication \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{1em}
+\begin{notebox}
+\textbf{Pedagogical point:} a student who can correctly answer
+(a)--(j) can reconstruct the argument from first principles, without
+needing to share the author's priors. The defense is not ``trust me''
+--- it is ``here is the test, and here is what the rubric says.''
+\end{notebox}
+
+\section*{References}
+
+\begin{itemize}[leftmargin=*]
+\item Bastani, H., Bastani, O., Sungu, A., Ge, H., Kabakc{\i}, \"O.,
+\& Mariman, R. (2025). Generative AI without guardrails can harm
+learning: Evidence from high school mathematics. \emph{PNAS},
+122(26), e2422633122.
+\item Bloom, B. S. (1984). The 2 sigma problem. \emph{Educational
+Researcher}, 13(6), 4--16.
+\item Cohen, P. A., Kulik, J. A., \& Kulik, C. C. (1982). Educational
+outcomes of tutoring: A meta-analysis of findings. \emph{American
+Educational Research Journal}, 19(2), 237--248.
+\item College Board. (2025). \emph{AP Statistics score distributions}.
+Retrieved from AP Central.
+\item Kestin, G., Miller, K., Klales, A., Milbourne, T., \& Ponti, G.
+(2025). AI tutoring outperforms in-class active learning: An RCT
+introducing a novel research-based design in an authentic
+educational setting. \emph{Scientific Reports}, 15, 17458.
+\href{https://doi.org/10.1038/s41598-025-97652-6}{DOI 10.1038/s41598-025-97652-6}.
+\item Nickow, A., Oreopoulos, P., \& Quan, V. (2024). The promise of
+tutoring for PreK--12 learning: A systematic review and
+meta-analysis of the experimental evidence. \emph{American
+Educational Research Journal}, 61(1), 74--107.
+\item VanLehn, K. (2011). The relative effectiveness of human
+tutoring, intelligent tutoring systems, and other tutoring systems.
+\emph{Educational Psychologist}, 46(4), 197--221.
+\end{itemize}
+
+\end{document}
