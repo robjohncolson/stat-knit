@@ -611,15 +611,10 @@ on the AP exam. The national 1-rate that year was $\mathbf{23.7\%}$
 teacher reports that 18 of the 22 students ``boycotted'' the exam
 (left it largely blank as protest); the remaining 4 attempted it.
 
-Separately, a randomized crossover trial published in
-\emph{Scientific Reports} (Kestin et al., 2025, $N = 194$ eligible
-undergraduates) compared a scaffolded AI tutor to research-based
-active-learning classroom instruction on identical physics content.
-Reported result: the AI-tutor condition had a post-test median of
-4.5 compared with 3.5 in active learning; a Mann--Whitney rank-sum
-test gave $z = -5.6$ and $p < 10^{-8}$. The authors report a
-regression-based effect size around $d = 0.63$, with ceiling-adjusted
-quantile-regression estimates from about 0.73 to 1.3 SD.
+Separately, a published randomized study (Kestin et al., 2025) compared
+a scaffolded AI tutor to research-based active-learning instruction on
+identical content. The study reported substantially higher post-test
+performance in the AI-tutor condition ($p < 10^{-8}$).
 
 The teacher's father, citing the all-1s outcome, argues
 \emph{``the data shows your method failed.''}
@@ -629,34 +624,31 @@ The teacher's father, citing the all-1s outcome, argues
 
 The teacher's class is \textbf{not} a random sample from any larger
 population. Identify (i) the population the local result can validly
-describe and (ii) the population the RCT can validly describe.
-Explain why averaging the two as if equally weighted commits a
-\textbf{selection bias} error.
+describe and (ii) the population the published study can validly
+describe. Explain why averaging the two as if equally weighted commits
+a \textbf{selection bias} error.
 
 \begin{expectedbox}
-Local sample $=$ volunteer convenience sample, single classroom,
-single teacher in a single Massachusetts district, $n = 22$ ---
-describes only itself. RCT $=$ randomized within a defined frame
-(Harvard undergrads in physics) --- supports causal inference within
-that frame and provides reasonable generalization to similar
-learners. The local sample is non-random and confounded with
-political/cultural variables; it cannot be pooled as evidence
-against the RCT.
+Local sample = intact classroom of 22 students in one Massachusetts
+public school --- describes only itself. The published study was
+randomized within its own frame and supports causal inference within
+that setting. The local sample is non-random and may be confounded by
+student attitudes and school norms; it cannot be pooled as evidence
+against the published study.
 \end{expectedbox}
 
 \section{(b) Exact binomial test on the local outcome \textnormal{\small(Units 4 \& 6)}}
 
 Test $H_0: p = 0.237$ vs. $H_a: p > 0.237$ where $p$ is the probability
 a student in this class scores a 1. A one-proportion $z$-test is not
-AP-appropriate here because the Large Counts condition fails:
+appropriate here because the Large Counts condition fails:
 \[
 np_0 = 22(0.237) \approx 5.21 < 10.
 \]
-Instead, under $H_0$ let $X \sim \text{Binomial}(22, 0.237)$, where
-$X$ is the number of students scoring a 1. Since all 22 students
-scored a 1, the exact one-sided p-value is
+Instead, under $H_0$ let $X \sim \text{Binomial}(22, 0.237)$. Since all
+22 students scored a 1, the exact one-sided p-value is
 \[
-P(X \geq 22) = P(X = 22) = 0.237^{22} \approx 1.8 \times 10^{-14}.
+P(X = 22) = 0.237^{22} \approx 1.8 \times 10^{-14}.
 \]
 \textbf{Reject $H_0$.} The local 1-rate is astronomically higher than
 the national benchmark. Then immediately explain why this rejection
@@ -664,119 +656,70 @@ does \emph{not} support the father's causal claim --- go to (c).
 
 \begin{notebox}
 This is a useful AP Statistics trap: the evidence is overwhelming,
-but the normal approximation is still the wrong method. Students must
-notice both facts.
+but the normal approximation is still the wrong method.
 \end{notebox}
 
-\section{(c) Intent-to-treat vs. per-protocol; identifying the estimand \textnormal{\small(Units 3 \& 6)}}
+\section{(c) Noncompliance and the meaning of the outcome \textnormal{\small(Units 3 \& 6)}}
 
-Of 22 students, 18 deliberately did not attempt the exam. Define:
-\begin{itemize}[leftmargin=*]
-  \item \textbf{Intent-to-treat (ITT) estimand:} mean exam score for
-  \emph{all} assigned students. Includes non-compliers.
-  \item \textbf{Per-protocol (PP) estimand:} mean exam score for
-  students who \emph{actually engaged} with both the instruction and
-  the assessment.
-\end{itemize}
-The all-1s figure is an ITT measure with $\sim$82\% non-compliance.
-Argue that the ITT estimate here measures \textbf{student political
-compliance with the assessment}, not the causal effect of AI-tutor
-instruction on statistical reasoning skill.
+Of the 22 students, 18 deliberately did not attempt the exam. The
+all-1s figure therefore includes the effect of students who refused to
+engage with the assessment. This makes the outcome a measure of
+compliance with the exam more than a clean measure of statistical
+reasoning skill.
+
+\textbf{The relevant on-treatment data} are the in-class performance
+(Blooket aces, handwritten work, verbal defenses) and the gains shown
+by some previously disengaged students who actually used the AI tutor
+as intended. The father's argument confuses noncompliance with
+evidence that the method itself failed.
+
+\section{(d) Interpreting the published study \textnormal{\small(Units 3 \& 7)}}
+
+The published study reported substantially higher post-test performance
+in the AI-tutor condition than in the active-learning condition
+($p < 10^{-8}$). The randomized design supports a causal claim in that
+setting: a carefully scaffolded AI tutor produced better results than
+the comparison condition on these tasks.
 
 \begin{notebox}
-\textbf{Analogy:} a drug RCT in which 82\% of the treatment arm
-refuses to swallow the pill cannot be used to claim the drug is
-ineffective.
+The comparator was research-based active learning, not traditional
+lecture. The result is still strong evidence that scaffolded AI can
+be an effective learning tool.
 \end{notebox}
 
-\textbf{The relevant on-treatment data} are: in-class Blooket
-performance, FRQ-style work submitted under observation, verbal
-defenses of reasoning. State that the father's argument confuses
-ITT non-compliance with causal failure.
+\section{(e) ``We don't have the data yet'' claim \textnormal{\small(Units 3 \& 6)}}
 
-\section{(d) Interpreting the published RCT \textnormal{\small(Units 3 \& 7)}}
-
-The Kestin et al. study should not be rewritten as a simple two-sample
-$t$-test. It was a randomized crossover design, and the published
-comparison used a Mann--Whitney rank-sum test on post-test scores:
-\[
-\text{AI median} = 4.5, \qquad
-\text{active-learning median} = 3.5, \qquad
-z = -5.6, \qquad p < 10^{-8}.
-\]
-The authors also report a regression-based effect size around
-$d = 0.63$, with ceiling-adjusted quantile-regression estimates from
-about 0.73 to 1.3 SD.
-
-Interpretation: if the AI tutor and active-learning conditions were
-equally effective, a difference this extreme would be extraordinarily
-unlikely by chance. The randomized crossover design supports a causal
-claim for this setting: a carefully scaffolded AI tutor outperformed a
-research-based active-learning class on these short physics lessons.
-
-\begin{notebox}
-The comparator was not weak lecture. It was active learning with peer
-instruction and instructor feedback. That makes the result more
-interesting, but it also means the claim should be stated precisely:
-structured AI tutoring beat this active-learning implementation on
-these tasks, not ``AI always beats teachers.''
-\end{notebox}
-
-\section{(e) Design conditions and the ``we don't have the data yet'' claim \textnormal{\small(Units 3 \& 6)}}
-
-The claim ``we don't have the data'' is too broad. We do have strong
-evidence that a \emph{scaffolded} AI tutor can improve short-term
-learning in a carefully designed randomized setting. But the scope of
-inference is limited by context: Harvard undergraduates, two physics
-topics, first-encounter learning, expert-written prompts and solutions,
-and short-term post-tests.
-
-A statistically careful response is:
-\begin{quote}
-The RCT is real evidence against the claim that AI tutoring is merely
-cheating or educationally empty. It is not evidence that every AI use
-case works. The treatment that worked was structured, explanation-first
-AI tutoring under a designed instructional system.
-\end{quote}
+The claim ``we don't have the data'' is no longer accurate. The
+published randomized study provides clear evidence that a scaffolded
+AI tutor can improve learning outcomes in a controlled setting. Scope
+of inference is limited to the conditions of that study, but the
+evidence is real and contradicts the idea that AI tutoring is merely
+cheating or educationally empty.
 
 \section{(f) Confounding in the local sample \textnormal{\small(Unit 3)}}
 
-List confounders in the local AP-score outcome that are \textbf{not}
-present in the RCT:
+List possible confounding variables in the local outcome that are not
+present in the published randomized study:
 \begin{itemize}[leftmargin=*]
-  \item Political identification of students with anti-AI in-group
-  \item Teacher reputation effect (admin/peer signaling about the teacher)
-  \item Self-selection into the class
-  \item Single-teacher / single-school effect (no replication)
-  \item Knowledge that the score itself was being used as social currency
+  \item Student attitudes toward AI and the teacher
+  \item School culture and peer norms
+  \item Knowledge that the score was being used as social currency
 \end{itemize}
-The RCT randomization breaks the link between treatment and these
-variables; the local ``study'' does not. Local outcome is therefore
-not a valid test of the treatment effect even before the
-non-compliance issue.
+The published study used randomization to break the link between
+these variables and the treatment. The local classroom did not. The
+all-1s outcome is therefore not a clean test of the pedagogy.
 
-\section{(f2) Guardrails: tutoring versus crutching \textnormal{\small(Unit 3)}}
+\section{(f2) Design matters: tutoring versus crutching \textnormal{\small(Unit 3)}}
 
 Bastani et al. (2025, \emph{PNAS}) studied nearly 1,000 high-school
-math students and found an important warning. During practice, GPT-4
-access improved assisted performance. But when AI access was removed
-on later exams, students in the unrestricted GPT condition performed
-worse than control students. A scaffolded tutor condition, designed to
-give hints rather than simply hand over answers, largely mitigated the
-harm.
+math students. During practice, unrestricted GPT-4 access improved
+assisted performance. But when AI was removed on later exams, those
+students performed worse than the control group. A scaffolded tutor
+condition (hints rather than full answers) largely eliminated the harm.
 
-This distinction matters statistically because ``AI access'' is not
-one treatment. At least two treatments must be separated:
-\begin{itemize}[leftmargin=*]
-  \item \textbf{Unrestricted answer engine:} can improve assisted
-  practice performance while weakening independent mastery.
-  \item \textbf{Scaffolded tutor with independent demonstration:}
-  uses AI during learning but requires handwritten reasoning, verbal
-  defense, and no-AI transfer tasks.
-\end{itemize}
-
-The relevant pedagogical question is therefore not ``AI or no AI?''
-but \textbf{which design of AI use produces transferable skill?}
+This shows that ``AI access'' is not one treatment. The key question
+is whether the AI is used as a \textbf{tutor} (explanation and practice
+with independent demonstration) or as an \textbf{answer engine} (crutch).
 
 \section{(g) Chi-square test for differential response \textnormal{\small(Unit 8)}}
 
@@ -828,25 +771,25 @@ uniformly boosting everyone.
 
 Write a paragraph, in AP-rubric style, that:
 \begin{enumerate}[leftmargin=*]
-  \item Identifies the \textbf{causal question} (``Does AI-tutor
-  instruction increase statistical reasoning skill relative to
+  \item Identifies the \textbf{causal question} (``Does scaffolded
+  AI-tutor instruction increase statistical reasoning skill relative to
   traditional instruction?'').
   \item Identifies \textbf{which evidence is admissible} for that
-  question (a scaffolded-tutor RCT --- yes; local ITT outcome under
-  boycott --- no).
-  \item States the \textbf{direction and magnitude} of the
-  admissible evidence (AI median 4.5 vs. active-learning median 3.5,
-  $z=-5.6$, $p < 10^{-8}$, regression-based $d \approx 0.63$ with
-  ceiling-adjusted estimates about 0.73--1.3 SD).
-  \item Identifies the \textbf{failure mode} of the local
-  ``evidence'' (selection bias, confounding, near-total
-  non-compliance).
-  \item Concludes that the defensible empirical claim is:
-  \emph{``Scaffolded AI tutoring, paired with independent
-  demonstration, can improve skill acquisition; unrestricted
-  answer-giving AI is a different treatment and can create a crutch
-  effect.''} Arguments based only on the local all-1s outcome rely on
-  inferential errors a Unit 3 / Unit 6 student is expected to identify.
+  question (the published randomized study --- yes; the local all-1s
+  outcome under boycott --- no).
+  \item States the \textbf{direction} of the admissible evidence
+  (substantially higher performance in the AI-tutor condition,
+  $p < 10^{-8}$).
+  \item Identifies the \textbf{failure mode} of the local outcome
+  (noncompliance and confounding).
+  \item Concludes that the defensible claim is: \emph{``When AI is
+  used as a scaffolded tutor during learning and students are still
+  required to demonstrate independent reasoning on assessments, it can
+  improve skill acquisition --- especially for previously disengaged
+  students. Unrestricted answer-giving AI is a different treatment
+  that can create a crutch effect.''} Arguments based only on the
+  local all-1s outcome rely on inferential errors a Unit 3/Unit 6
+  student is expected to identify.
 \end{enumerate}
 
 \section*{Skills covered}
@@ -859,8 +802,8 @@ Part & AP Stats skill \\
 \midrule
 (a) & Sampling, external validity, generalizability \\
 (b) & Exact binomial test; conditions for proportion inference \\
-(c) & Estimand definition, ITT vs PP, interpretation under non-compliance \\
-(d) & Interpreting a published randomized crossover study \\
+(c) & Noncompliance and interpretation of an outcome \\
+(d) & Interpreting a published randomized study \\
 (e) & Scope of inference, design conditions, evidentiary standards \\
 (f) & Confounding, randomization as causal license \\
 (f2) & Treatment definition: scaffolded tutoring versus answer engine \\
