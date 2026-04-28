@@ -1,0 +1,482 @@
+\documentclass[11pt]{article}
+
+% ---------- Packages ----------
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+
+% ---------- Hyperref ----------
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!50!black,
+  urlcolor=blue!50!black,
+  pdftitle={AP Statistics: AI Tutoring, Compliance, and Evidence (Student Edition)}
+}
+
+% ---------- Header / footer ----------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small AP Statistics --- Student Edition}
+\fancyhead[R]{\small \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---------- Section formatting ----------
+\titleformat{\part}[display]
+  {\normalfont\Huge\bfseries\centering}
+  {\partname\ \thepart}{0.5em}{}
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{blue!50!black}}{\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\color{blue!40!black}}{\thesubsection}{1em}{}
+
+% ---------- Boxes ----------
+\newtcolorbox{scenario}{
+  colback=gray!5, colframe=gray!50,
+  title=Scenario, fonttitle=\bfseries,
+  boxrule=0.5pt, arc=2pt
+}
+\newtcolorbox{notebox}{
+  colback=blue!3, colframe=blue!40!black,
+  title=Note, fonttitle=\bfseries,
+  boxrule=0.5pt, arc=2pt
+}
+
+% ---------- Custom commands ----------
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\phat}{\hat{p}}
+\newcommand{\xbar}{\bar{x}}
+
+\title{\bfseries AP Statistics:\\ AI Tutoring, Compliance, and Evidence \\[0.4em]
+\large A Combined Capstone and Investigative Task \\[0.2em]
+\normalsize Student Edition}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\begin{center}
+\begin{minipage}{0.85\textwidth}
+\itshape
+This document combines two complementary AP Statistics investigations.
+\textbf{Part I} is a 60-question synthetic capstone covering Units 1--9.
+\textbf{Part II} is a focused investigative task that applies those same
+tools to a real-world question about AI-tutor pedagogy. Show all work.
+Cite the question number for each answer. Use $\alpha = 0.05$ unless
+otherwise stated.
+\end{minipage}
+\end{center}
+
+\vspace{1em}
+\tableofcontents
+\newpage
+
+% ============================================================
+\part{Capstone: AI Tutoring, Compliance, and Evidence}
+% ============================================================
+
+\begin{notebox}
+This is a synthetic AP Statistics investigation. The scenario is
+realistic, but the data are invented so the statistical reasoning can
+be evaluated cleanly.
+\end{notebox}
+
+\section{Scenario}
+
+A district is debating whether AI tutoring should be allowed during the
+learning phase of AP Statistics. Some teachers argue that AI mainly
+enables cheating. Others argue that AI works like a private tutor:
+useful during practice, but not a substitute for independent reasoning
+on assessments.
+
+The district runs a six-week study with 240 AP Statistics students
+from 8 schools. Within each school, students are randomly assigned to
+one of two instructional conditions:
+
+\begin{itemize}[leftmargin=*]
+  \item \textbf{AI-access condition:} Students may use an AI tutor
+  during practice, homework, and review. They must still show
+  handwritten work and complete in-class checks without AI.
+  \item \textbf{Standard-resource condition:} Students use AP
+  Classroom videos, teacher notes, textbook examples, and ordinary
+  peer discussion. They may not use AI during the study period.
+\end{itemize}
+
+Researchers measure each student's pretest score, posttest score,
+daily AI-tutor minutes, phone-policy environment, engagement rating,
+and whether the student passes a later AP-style practice exam. Use a
+significance level of $\alpha = 0.05$ unless otherwise stated.
+
+\section{Data}
+
+\subsection*{Table A: One-Variable Data}
+For 20 randomly selected students in the AI-access condition, the
+recorded average daily AI-tutor minutes were:
+\[
+0,\ 0,\ 5,\ 8,\ 10,\ 12,\ 15,\ 18,\ 22,\ 25,\ 30,\ 32,\ 35,\ 40,\ 45,\ 50,\ 55,\ 60,\ 75,\ 95
+\]
+
+\subsection*{Table B: Randomized Study Summary}
+\begin{center}
+\small
+\begin{tabular}{lrrrrrrrr}
+\toprule
+Condition & $n$ & Mean pre & SD pre & Mean post & SD post & Mean gain & SD gain & Passed \\
+\midrule
+AI-access          & 120 & 48.2 & 13.8 & 66.8 & 15.6 & 18.6 & 12.4 & 69 \\
+Standard-resource  & 120 & 48.9 & 14.1 & 58.7 & 16.2 &  9.8 & 11.7 & 47 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{Table C: Actual AI Use Within the AI-Access Condition}
+\begin{center}
+\small
+\begin{tabular}{lrrrr}
+\toprule
+Actual behavior & $n$ & Mean gain & SD gain & Passed \\
+\midrule
+Regular use ($\geq 20$ min/day)        & 76 & 23.4 & 11.6 & 55 \\
+Little or no use ($< 20$ min/day)      & 44 & 10.3 & 10.9 & 14 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{Table D: Separate Observational Survey of School Culture and AI Use}
+The following table comes from a separate districtwide observational
+survey. It is not part of the randomized experiment in Table B.
+\begin{center}
+\small
+\begin{tabular}{lrrrr}
+\toprule
+School culture & Regular & Occasional & None & Total \\
+\midrule
+Restrictive phone/AI culture & 21 & 39 & 60 & 120 \\
+Open AI-tutor culture        & 66 & 34 & 20 & 120 \\
+\midrule
+\textbf{Total}               & \textbf{87} & \textbf{73} & \textbf{80} & \textbf{240} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{Table E: Regression Summary}
+For 80 students with complete usage logs, researchers fit a
+least-squares regression model predicting gain score from average
+daily AI-tutor minutes:
+\[
+\widehat{\text{gain}} = 7.0 + 0.40(\text{minutes})
+\]
+Additional information:
+\begin{itemize}[leftmargin=*,nosep]
+  \item $n = 80$
+  \item $r = 0.62$
+  \item $s = 9.8$
+  \item $SE_b = 0.061$ (standard error of the slope)
+  \item Residual plot shows random scatter with roughly constant vertical spread.
+  \item Histogram of residuals is roughly unimodal and approximately symmetric.
+\end{itemize}
+
+\subsection*{Table F: Probability Model}
+Based on a larger district survey, suppose an AP Statistics student
+independently has probability $p = 0.32$ of becoming a regular
+AI-tutor user when AI access is allowed but not required.
+
+\section{Questions}
+
+\subsection*{Unit 1: Exploring One-Variable Data}
+\begin{enumerate}[leftmargin=*]
+\item Classify each variable as categorical or quantitative:
+instructional condition, school culture, average daily AI-tutor
+minutes, gain score, passed AP-style practice exam.
+\item Use Table A to make an appropriate graph of AI-tutor minutes.
+Describe shape, center, spread, and unusual features in context.
+\item Find the median, $Q_1$, $Q_3$, IQR, and range of Table A.
+\item Use the $1.5 \times \text{IQR}$ rule to determine whether 95
+minutes is an outlier.
+\item Explain why the mean AI-tutor minutes would be larger than the
+median for Table A.
+\end{enumerate}
+
+\subsection*{Unit 2: Exploring Two-Variable Data}
+\begin{enumerate}[resume,leftmargin=*]
+\item Use Table D to compute the conditional relative frequency of
+regular AI use within each school culture.
+\item Does Table D suggest an association between school culture and
+actual AI use? Explain using conditional relative frequencies.
+\item Interpret the slope $0.40$ in Table E in context.
+\item Interpret $r = 0.62$ in context.
+\item Find and interpret $r^2$.
+\item Predict the gain score for a student who uses the AI tutor for
+40 minutes per day.
+\item Explain why it would be risky to use the regression line to
+predict the gain score for a student who uses AI for 180 minutes
+per day.
+\end{enumerate}
+
+\subsection*{Unit 3: Collecting Data}
+\begin{enumerate}[resume,leftmargin=*]
+\item Identify the experimental units, treatments, and response
+variables in the six-week study.
+\item Explain why random assignment within each school improves the
+study.
+\item Explain why blocking by school would be sensible in this study.
+\item Can the randomized comparison in Table B support a
+cause-and-effect conclusion about AI access? Explain.
+\item Can the comparison in Table C support a cause-and-effect
+conclusion about actual AI use? Explain carefully.
+\item Identify one possible source of bias if students self-report
+their AI minutes.
+\item Explain how noncompliance can contaminate the interpretation of
+a treatment effect.
+\end{enumerate}
+
+\subsection*{Unit 4: Probability, Random Variables, and Probability Distributions}
+\begin{enumerate}[resume,leftmargin=*]
+\item Using Table D, find $P(\text{regular AI use})$.
+\item Using Table D, find $P(\text{open AI-tutor culture})$.
+\item Using Table D, find $P(\text{regular AI use} \mid \text{open AI-tutor culture})$.
+\item Are regular AI use and open AI-tutor culture independent in
+Table D? Justify numerically.
+\item Suppose 5 students are randomly selected from a population
+where $p = 0.32$ for regular AI-tutor use. Find the probability
+exactly 2 are regular AI-tutor users.
+\item Let $X$ be the number of regular AI-tutor users among 5
+randomly selected students with $p = 0.32$. Find $E(X)$ and
+$\text{SD}(X)$.
+\item Find the probability that the first regular AI-tutor user
+appears on the fourth student selected.
+\end{enumerate}
+
+\subsection*{Unit 5: Sampling Distributions}
+\begin{enumerate}[resume,leftmargin=*]
+\item For samples of size 120 from a population with true pass
+proportion $p = 0.50$, describe the approximate sampling
+distribution of $\hat{p}$. Check conditions.
+\item If the true mean gain under the standard-resource condition is
+10 points with population SD 12, describe the approximate sampling
+distribution of the sample mean gain for $n = 120$.
+\item Under the null hypothesis that the two pass proportions are
+equal, explain why the observed difference in pass rates from
+Table B might or might not be surprising.
+\item Explain why larger sample sizes make it easier to detect
+smaller real differences.
+\end{enumerate}
+
+\subsection*{Unit 6: Inference for Categorical Data: Proportions}
+\begin{enumerate}[resume,leftmargin=*]
+\item Construct a 95\% confidence interval for the proportion of
+AI-access students who passed the AP-style practice exam.
+\item Construct a 95\% confidence interval for the difference in pass
+proportions, $p_{AI} - p_{\text{standard}}$, using Table B.
+\item Interpret the interval from Question 32 in context.
+\item Test whether the AI-access condition produced a higher pass
+proportion than the standard-resource condition.
+\item Explain the meaning of the p-value from Question 34 in context.
+\item Describe a Type I error and a Type II error for the test in
+Question 34.
+\end{enumerate}
+
+\subsection*{Unit 7: Inference for Quantitative Data: Means}
+\begin{enumerate}[resume,leftmargin=*]
+\item Construct a 95\% confidence interval for the mean gain in the
+AI-access condition.
+\item Construct a 95\% confidence interval for the difference in mean
+gains, $\mu_{AI} - \mu_{\text{standard}}$, using Table B.
+\item Interpret the interval from Question 38 in context.
+\item Test whether the AI-access condition produced a greater mean
+gain than the standard-resource condition.
+\item Explain why the randomized design matters when interpreting the
+difference in mean gains.
+\item Suppose a critic says, ``Students in the AI-access group were
+already stronger.'' Use Table B to respond statistically.
+\end{enumerate}
+
+\subsection*{Unit 8: Inference for Categorical Data: Chi-Square}
+\begin{enumerate}[resume,leftmargin=*]
+\item Use Table D to state appropriate hypotheses for a chi-square test.
+\item Calculate the expected count for restrictive culture and
+regular AI use.
+\item Verify that the conditions for a chi-square test are met.
+\item The chi-square test statistic for Table D is approximately
+$43.62$. Find the degrees of freedom and approximate p-value
+category.
+\item State a conclusion in context.
+\item Identify which cells contribute most to the chi-square
+statistic and explain what that means in context.
+\end{enumerate}
+
+\subsection*{Unit 9: Inference for Quantitative Data: Slopes}
+\begin{enumerate}[resume,leftmargin=*]
+\item State hypotheses for testing whether average daily AI-tutor
+minutes are linearly associated with gain score.
+\item Use Table E to calculate the test statistic for the slope.
+\item Find the degrees of freedom.
+\item State a conclusion in context.
+\item Construct a 95\% confidence interval for the slope.
+\item Interpret the interval in context.
+\item Explain why regression evidence alone is weaker causal evidence
+than the randomized comparison in Table B.
+\end{enumerate}
+
+\subsection*{Final Synthesis}
+\begin{enumerate}[resume,leftmargin=*]
+\item A school administrator says, ``The AP-style scores prove
+AI-supported instruction works.'' Explain why that statement is
+too strong.
+\item A teacher says, ``The AP-style scores prove AI-supported
+instruction fails whenever students do not use it correctly.''
+Explain why that statement is also too strong.
+\item Distinguish between the effect of being assigned to the
+AI-access condition and the association observed for students who
+actually used AI regularly.
+\item Write a statistically careful conclusion about what the full
+dataset does and does not show.
+\item Propose a better follow-up study that could distinguish
+AI-tutor effects from student motivation, compliance, teacher
+culture, and phone-policy effects.
+\end{enumerate}
+
+\newpage
+% ============================================================
+\part{Investigative Task: Evaluating an AI-Tutor Pedagogy}
+% ============================================================
+
+\begin{scenario}
+A high school AP Statistics teacher in Massachusetts implemented an
+AI-tutor-supplemented curriculum during the 2024--25 school year. The
+class had $n = 22$ students. At year's end, \textbf{all 22 scored a 1}
+on the AP exam. The national 1-rate that year was $\mathbf{23.7\%}$
+(the 17.0\% figure was the national 5-rate). The
+teacher reports that 18 of the 22 students ``boycotted'' the exam
+(left it largely blank as protest); the remaining 4 attempted it.
+
+Separately, a published randomized study (Kestin et al., 2025) compared
+a scaffolded AI tutor to research-based active-learning instruction on
+identical content. The study reported substantially higher post-test
+performance in the AI-tutor condition ($p < 10^{-8}$).
+
+The teacher's father, citing the all-1s outcome, argues
+\emph{``the data shows your method failed.''}
+\end{scenario}
+
+\section{(a) Sampling and external validity \textnormal{\small(Unit 3)}}
+
+The teacher's class is \textbf{not} a random sample from any larger
+population.
+\begin{enumerate}[leftmargin=*,label=(\roman*)]
+  \item Identify the population the local result can validly describe.
+  \item Identify the population the published study can validly describe.
+  \item Explain why averaging the two as if equally weighted commits a
+  \textbf{selection bias} error.
+\end{enumerate}
+
+\section{(b) Inference on the local outcome \textnormal{\small(Units 4 \& 6)}}
+
+State appropriate hypotheses for testing whether the local 1-rate
+differs from the national 1-rate ($p = 0.237$). Check the conditions
+for a one-proportion $z$-test. If the conditions fail, propose and
+carry out an appropriate alternative test, compute the p-value, and
+state a conclusion in context.
+
+\section{(c) Noncompliance and the meaning of the outcome \textnormal{\small(Units 3 \& 6)}}
+
+Of the 22 students, 18 deliberately did not attempt the exam.
+Explain in context what the all-1s outcome actually measures, and
+identify what data would be more informative about the causal effect
+of the AI-tutor curriculum on statistical reasoning skill.
+
+\section{(d) Interpreting the published study \textnormal{\small(Units 3 \& 7)}}
+
+The published randomized study reported substantially higher post-test
+performance in the AI-tutor condition than in the active-learning
+condition ($p < 10^{-8}$). State what causal claim is justified by
+this evidence and what the scope of inference is. Be precise about the
+comparator (research-based active learning, not traditional lecture).
+
+\section{(e) ``We don't have the data yet'' claim \textnormal{\small(Units 3 \& 6)}}
+
+A critic argues, ``We don't have the data on AI tutoring.'' Use the
+published study to evaluate this claim. Be careful about what is and
+is not justified by a single study.
+
+\section{(f) Confounding in the local sample \textnormal{\small(Unit 3)}}
+
+List at least three plausible confounding variables in the local
+outcome that are not present in the published randomized study.
+Explain why randomization addresses these confounders in the
+published study but not in the local classroom outcome.
+
+\section{(f2) Design matters: tutoring versus crutching \textnormal{\small(Unit 3)}}
+
+Bastani et al.\ (2025, \emph{PNAS}) studied nearly 1,000 high-school
+math students. During practice, unrestricted GPT-4 access improved
+assisted performance. But when AI was removed on later exams, those
+students performed \emph{worse} than the control group. A scaffolded
+tutor condition (hints rather than full answers) largely eliminated
+the harm.
+
+Explain what this means for the question ``Should AI be allowed in
+classrooms?'' and why ``AI access'' cannot be treated as a single
+treatment. Identify the two distinct treatments hidden inside ``AI
+access.''
+
+\section{(g) Chi-square test for differential response \textnormal{\small(Unit 8)}}
+
+The teacher records the following $2 \times 2$ table from the next
+cohort ($n = 30$), classifying students by prior engagement and
+post-tutor performance:
+
+\begin{center}
+\small
+\begin{tabular}{lrrr}
+\toprule
+ & Improved $\geq$ 1 letter grade & Did not improve & Total \\
+\midrule
+Previously disengaged & 9 & 3  & 12 \\
+Previously engaged    & 4 & 14 & 18 \\
+\midrule
+\textbf{Total}        & \textbf{13} & \textbf{17} & \textbf{30} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+State appropriate hypotheses, check conditions, compute the
+chi-square statistic, find the degrees of freedom and an approximate
+p-value, and state a conclusion in context.
+
+\section{(h) Linear regression with interaction \textnormal{\small(Units 2 \& 9)}}
+
+Researchers fit:
+\[
+\widehat{\text{Score}} = \beta_0 + \beta_1(\text{AI hours})
+  + \beta_2(\text{prior engagement})
+  + \beta_3(\text{AI hours} \times \text{prior engagement})
+\]
+The fitted model gives $\hat\beta_1 > 0$ and $\hat\beta_3 < 0$.
+Interpret what these signs together imply about how the marginal
+benefit of AI hours depends on a student's prior engagement.
+
+\section{(i) Synthesis: stating the defensible conclusion \textnormal{\small(Skills 1.E, 4.B)}}
+
+Write a paragraph, in AP-rubric style, that:
+\begin{enumerate}[leftmargin=*]
+  \item Identifies the \textbf{causal question}.
+  \item Identifies \textbf{which evidence is admissible} for that
+  question and which is not.
+  \item States the \textbf{direction} of the admissible evidence.
+  \item Identifies the \textbf{failure mode} of the local outcome.
+  \item States a defensible empirical claim, with appropriate scope
+  of inference, and explains why arguments based only on the local
+  all-1s outcome rely on inferential errors.
+\end{enumerate}
+
+\end{document}
